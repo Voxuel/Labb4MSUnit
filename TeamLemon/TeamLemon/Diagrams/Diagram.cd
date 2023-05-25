@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TeamLemon.Models.Account" Collapsed="true">
+    <Position X="7.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAEAggAAAAAAQAgAAAAAAQAAAAAIAA=</HashCode>
+      <FileName>Models\Account.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamLemon.Models.Admin" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAACAAAAAAIAACAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Admin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamLemon.Models.Loan" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAACAAAAAAAAEAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Loan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamLemon.Person" Collapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAIACAAAIAwAIAAABIAAQACAAAAACCAAAAAAABAAA=</HashCode>
+      <FileName>Models\Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamLemon.Models.User" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAASAAAAACCAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamLemon.Controls.AccountManagement" Collapsed="true">
+    <Position X="9.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAIAAAAAEABAAAAAAIAIQCAAAAAAAAAAQIAIBAA=</HashCode>
+      <FileName>Controls\AccountManagement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamLemon.Controls.ASCIIArt" Collapsed="true">
+    <Position X="9.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\ASCIIArt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamLemon.Controls.ChangelogManagement" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAQAAAAAAAEAAAACAAICAABAAAA=</HashCode>
+      <FileName>Controls\ChangelogManagement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamLemon.Controls.LoanMangement" Collapsed="true">
+    <Position X="9.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAEIBAAAAAAAAAAAAAAAACBAAA=</HashCode>
+      <FileName>Controls\LoanMangement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamLemon.Controls.LoginClass" Collapsed="true">
+    <Position X="9.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\LoginClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamLemon.Controls.MenuClass" Collapsed="true">
+    <Position X="9.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEABAAAAAAAAAAAAIIAAAAAA=</HashCode>
+      <FileName>Controls\MenuClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
