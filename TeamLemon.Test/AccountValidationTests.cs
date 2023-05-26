@@ -92,7 +92,7 @@ namespace TeamLemon.Test
             ValidationMock mock = new ValidationMock();
 
             
-            var action = mock.CreateNewUser();
+            var action = mock.CreateNewUser("Kalle","Secret",1);
 
             CollectionAssert.Contains(User.AllUsers,action);
         }
