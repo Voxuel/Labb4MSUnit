@@ -55,9 +55,9 @@ namespace TeamLemon.Test
         [DataTestMethod]
         public void LoginValidation_WhenGivenRightUserNameAndPassword_ReturnTrue(string username,string pass)
         {
-            ValidationMock mock = new ValidationMock();
+            LoginClass mock = new LoginClass();
 
-            var action = mock.LoginValidation(username, pass);
+            var action = mock.LoginValidation(username, pass,out User currentU, out Admin currentA);
 
             Assert.IsTrue(action);
         }
@@ -68,10 +68,9 @@ namespace TeamLemon.Test
 
         public void LoginValidation_WhenGivenWrongUsernameAndPassword_ReturnFalse(string username,string pass)
         {
-            ValidationMock mock = new ValidationMock();
+            LoginClass mock = new LoginClass();
 
-
-            var action = mock.LoginValidation(username, pass);
+            var action = mock.LoginValidation(username, pass,out User currentU, out Admin currentA);
 
             Assert.IsFalse(action);
         }
@@ -82,9 +81,9 @@ namespace TeamLemon.Test
         [TestMethod]
         public void LoginValidation_WhenGivenWrongInputType_ShouldRaiseException(string username,string pass)
         {
-            ValidationMock mock = new ValidationMock();
+            LoginClass mock = new LoginClass();
 
-            mock.LoginValidation(username, pass);
+            var action = mock.LoginValidation(username, pass,out User currentU, out Admin currentA);
 
             Assert.Fail();
         }
@@ -92,11 +91,11 @@ namespace TeamLemon.Test
         [TestMethod]
         public void LoginValidation_WhenGivenRightUsernameAndWrongPassword_ShouldReturnFalse()
         {
-            ValidationMock mock = new ValidationMock();
+            LoginClass mock = new LoginClass();
             var username = "Leo";
             var pass = "erwwrwr";
 
-            var action = mock.LoginValidation(username, pass);
+            var action = mock.LoginValidation(username, pass,out User currentU, out Admin currentA);
             
             Assert.IsFalse(action);
         }
@@ -104,7 +103,6 @@ namespace TeamLemon.Test
         [TestMethod]
         public void LoginValidation_WhenUserIsLockedOut_ReturnFalse()
         {
-            ValidationMock mock = new ValidationMock();
             User.AllUsers.Add(new User()
             {
                 Name = "Lasse",
@@ -112,17 +110,19 @@ namespace TeamLemon.Test
                 LockedUser = true
             });
 
-            var action = mock.LoginValidation("Lasse", "Something");
+            LoginClass mock = new LoginClass();
+
+            var action = mock.LoginValidation("Lasse", "Something"
+                ,out User currentU, out Admin currentA);
 
             Assert.IsFalse(action);
         }
         [TestMethod]
         public void CreateNewUser_ShouldAddNewUserToDataSource()
         {
-            ValidationMock mock = new ValidationMock();
-
+            Admin mock = new Admin();
             
-            var action = mock.CreateNewUser("Kalle","Secret",1);
+            var action = mock.CreateUser("Johanna","Secret",1);
 
             CollectionAssert.Contains(User.AllUsers,action);
         }
@@ -130,11 +130,11 @@ namespace TeamLemon.Test
         [TestMethod]
         public void CreateNewUser_WhenGivenWrongAccountTypeChoice_ShouldReturnErrorMessage()
         {
-            ValidationMock mock = new ValidationMock();
+            Admin mock = new Admin();
             var sw = new StringWriter();
             Console.SetOut(sw);
             string expected = "Wrong input, select 1 or 2";
-            var action = mock.CreateNewUser("Johanna", "Something", 6);
+            var action = mock.CreateUser("Johanna", "Something", 6);
             
             string result = sw.ToString();
             
