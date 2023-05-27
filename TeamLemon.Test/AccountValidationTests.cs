@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TeamLemon.Controls;
@@ -10,7 +12,7 @@ namespace TeamLemon.Test
     public class AccountValidationTests
     {
         [TestMethod]
-        public void ValidateAccountNumber_WhenGivenInputAccountNumber_ReturnCorrect()
+        public void ValidateAccountNumber_WhenGivenInputAccountNumber_ReturnCorrectAccountId()
         {
             ValidationMock mock = new ValidationMock();
             var accountNumber = "100401";
@@ -49,28 +51,56 @@ namespace TeamLemon.Test
 
             Assert.IsFalse(action);
         }
-        [TestMethod]
-        public void LoginValidation_WhenGivenRightPassword_ReturnTrue()
+        [DataRow("Leo","MTG")]
+        [DataTestMethod]
+        public void LoginValidation_WhenGivenRightUserNameAndPassword_ReturnTrue(string username,string pass)
         {
             ValidationMock mock = new ValidationMock();
-            var username = "Leo";
-            var pass = "MTG";
 
             var action = mock.LoginValidation(username, pass);
 
             Assert.IsTrue(action);
         }
         [TestMethod]
-        public void LoginValidation_WhenGivenWronguserNameAndPassword_ReturnFalse()
+        [DataRow("leo","mtG")]
+        [DataRow("234242","2343251")]
+        [DataRow("las",".......")]
+
+        public void LoginValidation_WhenGivenWrongUsernameAndPassword_ReturnFalse(string username,string pass)
         {
             ValidationMock mock = new ValidationMock();
-            var username = "ewrrw";
-            var pass = "234";
+
 
             var action = mock.LoginValidation(username, pass);
 
             Assert.IsFalse(action);
         }
+
+        [DataRow(123, 432.0f)]
+        [ExpectedException(typeof(ArgumentException),
+            "Invalid type was passed to method")]
+        [TestMethod]
+        public void LoginValidation_WhenGivenWrongInputType_ShouldRaiseException(string username,string pass)
+        {
+            ValidationMock mock = new ValidationMock();
+
+            mock.LoginValidation(username, pass);
+
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void LoginValidation_WhenGivenRightUsernameAndWrongPassword_ShouldReturnFalse()
+        {
+            ValidationMock mock = new ValidationMock();
+            var username = "Leo";
+            var pass = "erwwrwr";
+
+            var action = mock.LoginValidation(username, pass);
+            
+            Assert.IsFalse(action);
+        }
+        
         [TestMethod]
         public void LoginValidation_WhenUserIsLockedOut_ReturnFalse()
         {
@@ -95,6 +125,20 @@ namespace TeamLemon.Test
             var action = mock.CreateNewUser("Kalle","Secret",1);
 
             CollectionAssert.Contains(User.AllUsers,action);
+        }
+
+        [TestMethod]
+        public void CreateNewUser_WhenGivenWrongAccountTypeChoice_ShouldReturnErrorMessage()
+        {
+            ValidationMock mock = new ValidationMock();
+            var sw = new StringWriter();
+            Console.SetOut(sw);
+            string expected = "Wrong input, select 1 or 2";
+            var action = mock.CreateNewUser("Johanna", "Something", 6);
+            
+            string result = sw.ToString();
+            
+            Assert.AreEqual(expected,result);
         }
     }
 }
