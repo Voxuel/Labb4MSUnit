@@ -89,64 +89,27 @@ namespace TeamLemon.Mock
                 Console.WriteLine("The user is locked");
                 currentUser.LockedUser = true;
                 LogIn = false;
-
             }
 
             return LogIn;
         }
 
-        public User CreateNewUser()
+        public User CreateNewUser(string username, string password, int userChoice)
         {
-            var allUsers = User.AllUsers;
-            string _username = null;
-            string _password = null;
-            int _id;
-
+            int _id = 0;
+            bool pass = false;
             // Get unique username
             do
             {
-                //Console.WriteLine("Creating new user...");
-                //Console.Write("Enter a new username : ");
-                string input = "Justin";
-                bool isUnique = true;
-
-                if (input != null)
+                if (String.IsNullOrEmpty(CheckUnique(username)))
                 {
-                    // Loop through all users names to see if this username is unique
-                    foreach (var user in allUsers)
-                    {
-                        if (user.Name.ToLower() == input.ToLower())
-                        {
-                            // If a matching name is found this username is not unique
-                            isUnique = false;
-                        }
-                    }
-
-                    // If the username is unique then _username = the new username
-                    // If it is not unique then ask for another username
-                    if (!isUnique)
-                    {
-                        //Console.WriteLine("Your username is not unique.");
-                    }
-                    else
-                    {
-                        _username = input;
-                    }
-                }
-            } while (_username == null);
-
-            // Get the password
-            do
-            {
-                //Console.Write("Enter a new password : ");
-                string input = "Case";
-
-                if (input != null)
-                {
-                    _password = input;
+                    Console.WriteLine("Not unique username");
+                    return new User();
                 }
 
-            } while (_password == null);
+                pass = true;
+            } while (!pass);
+
 
             // Get id 
             _id = 1001 + User.AllUsers.Count;
@@ -157,9 +120,6 @@ namespace TeamLemon.Mock
             var result = accID.Substring(0, 6);
 
             // Choose culture info aka currency
-            //Console.WriteLine("What currency would you like to use on this account?");
-            //Console.WriteLine("1. SEK");
-            //Console.WriteLine("2. USD");
 
             CultureInfo sek = new CultureInfo("sv-SE");
             CultureInfo usd = new CultureInfo("en-US");
@@ -167,7 +127,7 @@ namespace TeamLemon.Mock
 
             do
             {
-                if (int.TryParse("1", out int userChoice) && userChoice > 0 && userChoice < 3)
+                if (userChoice > 0 && userChoice < 3)
                 {
                     if (userChoice == 1)
                     {
@@ -181,13 +141,18 @@ namespace TeamLemon.Mock
 
                     break;
                 }
+                else
+                {
+                    Console.Write("Wrong input, select 1 or 2");
+                    return new User();
+                }
             } while (true);
 
             // Create a new user
             User newUser = new User()
             {
-                Name = _username,
-                Password = _password,
+                Name = username,
+                Password = password,
                 ID = _id,
                 IsAdmin = false,
                 LogInAttempt = 3,
@@ -203,6 +168,26 @@ namespace TeamLemon.Mock
             // Append to AllUsers
             User.AllUsers.Add(newUser);
             return newUser;
+        }
+
+
+        public string CheckUnique(string input)
+        {
+            // Loop through all users names to see if this username is unique
+
+            var result = User.AllUsers.Where(u =>
+                String.Equals(u.Name, input, StringComparison.CurrentCulture));
+            var isUnique = !result.Any();
+            
+
+            // If the username is unique then _username = the new username
+            // If it is not unique then ask for another username
+            if (!isUnique)
+            {
+                Console.WriteLine("Your username is not unique.");
+                return "";
+            }
+            return input;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using TeamLemon.Mock;
 using TeamLemon.Models;
 
 namespace TeamLemon.Controls
@@ -26,8 +27,8 @@ namespace TeamLemon.Controls
                             Admin.ExchangeRate();
                             break;
                         case 3:
-                            LoginClass.LoginValidation(User.AllUsers, Admin.AllAdmins);
                             IsAdminMenu = false;
+                            LoginClass.Login();
                             break;
                     }
                 }
@@ -81,7 +82,7 @@ namespace TeamLemon.Controls
                         break;
                     case 7:
                         task = ChangelogManagement.WriteChangelogAsync();
-                        LoginClass.LoginValidation(User.AllUsers, Admin.AllAdmins);
+                        LoginClass.Login();
                         loop = false;
                         break;
                     case 8:

@@ -16,7 +16,7 @@ namespace TeamLemon
             ChangelogManagement.Init();
             ChangelogManagement.InitAllUserChangelogs();
 
-            LoginClass.LoginValidation(User.AllUsers,Admin.AllAdmins);
+            LoginClass.Login();
 
             System.Threading.Tasks.Task task = ChangelogManagement.WriteChangelogAsync();
 
