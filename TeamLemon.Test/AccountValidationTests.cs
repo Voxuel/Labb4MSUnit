@@ -133,5 +133,16 @@ namespace TeamLemon.Test
             
             Assert.AreEqual(expected,result);
         }
+
+        [TestMethod]
+        [DataRow(123, 432.0f,"wrong")]
+        [ExpectedException(typeof(ArgumentException),
+            "wrong datatype in input System.ArgumentException: Object of type: INPUT," +
+            "can not be converted to type: EXPECTED ")]
+        public void CreateNewUser_WhenGivenWrongDataType_ShouldRaiseException(string username,string pass,int userchoice)
+        {
+            Admin mock = new Admin();
+            Assert.ThrowsException<ArgumentException>(() => mock.CreateUser(username, pass, userchoice));
+        }
     }
 }
