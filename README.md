@@ -18,7 +18,7 @@ Testing when given right username but wrong password should return false with me
 
 Testing when the user is locked out after to many login attempts.
 
-###Tests for creating new users as admin by:
+### Tests for creating new users as admin by:
 Testing that after an user is created its added to the right datasource.
 
 Testing when creating new user and giving unexpected currency type input.
