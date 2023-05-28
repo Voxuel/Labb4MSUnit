@@ -8,6 +8,7 @@ using TeamLemon.Models;
 
 namespace TeamLemon.Test
 {
+    //Testclass for unit tests
     [TestClass]
     public class AccountValidationTests
     {
