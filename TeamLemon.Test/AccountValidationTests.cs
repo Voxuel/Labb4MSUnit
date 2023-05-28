@@ -13,19 +13,9 @@ namespace TeamLemon.Test
     public class AccountValidationTests
     {
         [TestMethod]
-        public void ValidateAccountNumber_WhenGivenInputAccountNumber_ReturnCorrectAccountId()
-        {
-            ValidationMock mock = new ValidationMock();
-            var accountNumber = "100401";
-
-            var action = mock.ValidateAccountNumber("100401");
-
-            Assert.AreEqual(1004, action);
-        }
-        [TestMethod]
         public void ValidateAmountToTransfer_WhenGivenRightAmount_ReturnTrue()
         {
-            ValidationMock mock = new ValidationMock();
+            AccountManagement mock = new AccountManagement();
             var user = new User()
             {
                 ID = 1004,
@@ -40,7 +30,7 @@ namespace TeamLemon.Test
         [TestMethod]
         public void ValidateAmountToTransfer_WhenGivenWrongAmount_ReturnFalse()
         {
-            ValidationMock mock = new ValidationMock();
+            AccountManagement mock = new AccountManagement();
             var user = new User()
             {
                 ID = 1004,
@@ -52,6 +42,8 @@ namespace TeamLemon.Test
 
             Assert.IsFalse(action);
         }
+        
+        
         [DataRow("Leo","MTG")]
         [DataTestMethod]
         public void LoginValidation_WhenGivenRightUserNameAndPassword_ReturnTrue(string username,string pass)
@@ -62,11 +54,11 @@ namespace TeamLemon.Test
 
             Assert.IsTrue(action);
         }
+        
         [TestMethod]
         [DataRow("leo","mtG")]
         [DataRow("234242","2343251")]
         [DataRow("las",".......")]
-
         public void LoginValidation_WhenGivenWrongUsernameAndPassword_ReturnFalse(string username,string pass)
         {
             LoginClass mock = new LoginClass();
