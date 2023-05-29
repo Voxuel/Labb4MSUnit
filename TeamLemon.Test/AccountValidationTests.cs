@@ -127,7 +127,7 @@ namespace TeamLemon.Test
             var sw = new StringWriter();
             Console.SetOut(sw);
             string expected = "Wrong input, select 1 or 2";
-            var action = mock.CreateUser("Johanna", "Something", 6);
+            var action = mock.CreateUser("Andreas", "Something", 6);
             
             string result = sw.ToString();
             
